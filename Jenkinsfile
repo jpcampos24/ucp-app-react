@@ -26,7 +26,7 @@ pipeline {
        stage('Unit Tests') { 
            steps { 
                sh 'npm test -- --watchAll=false --silent > test-output.txt || true' 
-// Ejecuta pruebas sin modo interactivo 
+                // Ejecuta pruebas sin modo interactivo 
                // Muestra el reporte simple en la consola 
                sh 'cat test-output.txt' 
            } 
@@ -46,4 +46,5 @@ echo '¡Pipeline ejecutado con éxito!'
 failure { 
 echo 'Pipeline fallido. Revisar logs.' 
 } 
-} 
+}
+}
