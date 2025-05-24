@@ -33,18 +33,18 @@ pipeline {
            post { 
                always { 
                    archiveArtifacts artifacts: 'test-output.txt', 
-allowEmptyArchive: true 
-} 
-} 
-} 
-} 
-// Post-actions (opcional) 
-post { 
-success { 
-echo '¡Pipeline ejecutado con éxito!' 
-} 
-failure { 
-echo 'Pipeline fallido. Revisar logs.' 
-} 
-}
+                    allowEmptyArchive: true 
+                } 
+            } 
+        } 
+    } 
+    // Post-actions (opcional) 
+    post { 
+        success { 
+            echo '¡Pipeline ejecutado con éxito!' 
+        } 
+        failure { 
+            echo 'Pipeline fallido. Revisar logs.' 
+        } 
+    }
 }
