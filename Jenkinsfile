@@ -35,8 +35,7 @@ pipeline {
     post {
         always {
             emailext (
-            subject: "Pipeline ${currentBuild.result}: ucp-app-react
-            #${env.BUILD_NUMBER}",
+            subject: "Pipeline ${currentBuild.result}: ucp-app-react #${env.BUILD_NUMBER}",
             body: """
             Estado: ${currentBuild.result}
             URL Build: ${env.BUILD_URL}
