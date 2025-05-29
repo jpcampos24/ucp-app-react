@@ -21,8 +21,7 @@ pipeline {
  // Etapa 3: Ejecutar pruebas unitarias
  stage('Pruebas Unitarias') {
  steps {
- sh 'npm test -- --watchAll=false --ci --reporters=default
---reporters=jest-junit' // Genera reporte JUnit
+ sh 'npm test --watchAll=false --ci --reporters=default --reporters=jest-junit' // Genera reporte JUnit
  }
  post {
  always {
@@ -43,7 +42,7 @@ pipeline {
  URL Build: ${env.BUILD_URL}
  Detalles de Pruebas: ${env.BUILD_URL}testReport/
  """,
- to: 'tu-email@example.com' // Reemplaza con tu email
+ to: 'juan.campos@ucp.edu.co' // Reemplaza con tu email
  )
  }
  }
