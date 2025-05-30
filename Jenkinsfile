@@ -29,7 +29,7 @@ pipeline {
                             try { 
                                 sh 'npm test -- --browser=chrome --watchAll=false --ci --reporters=jest-junit'
                                 sh 'ls -R reports || echo "No reports folder found"'
-                                junit 'reports/test/junit-chrome.xml'
+                                junit 'reports/test/junit.xml'
                             } catch (err) { 
                                 echo "Pruebas en Chrome fallaron: ${err}" 
                                 currentBuild.result = 'UNSTABLE' 
@@ -43,7 +43,7 @@ pipeline {
                         script { 
                             try { 
                                 sh 'npm test -- --browser=firefox --watchAll=false --ci --reporters=jest-junit' 
-                                junit 'reports/test/junit-firefox.xml' 
+                                junit 'reports/test/junit.xml' 
                             } catch (err) { 
                                 echo "Pruebas en Firefox fallaron: ${err}" 
                                 currentBuild.result = 'UNSTABLE' 
