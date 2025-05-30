@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mini Supermercado</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Mini Supermercado</h1>
+
+    <div class="productos">
+        <div class="producto">
+            <h3>Manzana</h3>
+            <p>$1.00</p>
+            <button onclick="agregarAlCarrito('Manzana', 1)">Agregar</button>
+        </div>
+        <div class="producto">
+            <h3>Pan</h3>
+            <p>$1.50</p>
+            <button onclick="agregarAlCarrito('Pan', 1.5)">Agregar</button>
+        </div>
+        <div class="producto">
+            <h3>Leche</h3>
+            <p>$2.00</p>
+            <button onclick="agregarAlCarrito('Leche', 2)">Agregar</button>
+        </div>
+    </div>
+
+    <h2>Carrito</h2>
+    <ul id="carrito-lista"></ul>
+    <p>Total: $<span id="total">0.00</span></p>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -2,15 +2,17 @@
 import './App.css';
 import React from 'react';
 
+let total = 0;
 
-function App() {
-  return (
-    <div>
-      <h1>¡Universidad Católica de Pereira !</h1>
-      <p>Listado de integrantes - Proceso de Desarrollo de Software I</p>
-      <h1>Estudiante:Jorge Mario Echeverri Yepes</h1>
-    </div>
-  );
+function agregarAlCarrito(producto, precio) {
+    const lista = document.getElementById("carrito-lista");
+    const item = document.createElement("li");
+    item.textContent = `${producto} - $${precio.toFixed(2)}`;
+    lista.appendChild(item);
+
+    total += precio;
+    document.getElementById("total").textContent = total.toFixed(2);
 }
+
 
 export default App;
