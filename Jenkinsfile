@@ -21,7 +21,7 @@ pipeline {
     // Etapa 3: Ejecutar pruebas unitarias
     stage('Pruebas Unitarias') {
         steps {
-        sh 'npm test --watchAll=false --ci --reporters=default --reporters=jest-junit' // Genera reporte JUnit
+        sh 'npm test --watchAll=false jest --ci --reporters=default --reporters=jest-junit' // Genera reporte JUnit
         }
         post {
             always {
