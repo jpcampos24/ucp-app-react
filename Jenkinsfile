@@ -7,8 +7,7 @@ pipeline {
         // Etapa 1: Checkout del código desde GitHub
         stage('Checkout') {
             steps {
-            git branch: 'main', url:
-            'https://github.com/amartinezh/ucp-app-react.git'
+            git branch: 'main', url:'https://github.com/amartinezh/ucp-app-react.git'
             }
         }
     // Etapa 2: Instalar dependencias y build del proyecto
@@ -20,8 +19,7 @@ pipeline {
     }
     // Etapa 3: Ejecutar pruebas unitarias
     stage('Pruebas Unitarias') {
-        steps {
-        sh 'npm test --watchAll=false jest --ci --reporters=default --reporters=jest-junit' // Genera reporte JUnit
+        steps {sh 'npm test -- --watchAll=false --ci --reporters=default --reporters=jest-junit' // Genera reporte JUnitsh 'npm test --watchAll=false jest --ci --reporters=default --reporters=jest-junit' // Genera reporte JUnit
         }
         post {
             always {
