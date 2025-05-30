@@ -28,8 +28,8 @@ pipeline {
                         script { 
                             try { 
                                 sh 'npm test -- --browser=chrome --watchAll=false --ci --reporters=jest-junit'
-                                junit 'reports/test/junit-chrome.xml'
                                 sh 'ls -R reports || echo "No reports folder found"'
+                                junit 'reports/test/junit-chrome.xml'
                             } catch (err) { 
                                 echo "Pruebas en Chrome fallaron: ${err}" 
                                 currentBuild.result = 'UNSTABLE' 
