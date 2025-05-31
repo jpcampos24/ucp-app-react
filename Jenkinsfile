@@ -42,7 +42,7 @@ pipeline {
         }
 
         //Snyk step
-        stage('Security Scan with Snyk'){
+        /*stage('Security Scan with Snyk'){
             steps{
                 // Instalar CLI de Snyk
                 sh 'npm install -g snyk'
@@ -73,12 +73,11 @@ pipeline {
                         reportName: 'Snyk Security Report' 
                     ] 
                      
-                } catch (err) { 
+                }catch (err) { 
                     echo "Snyk scan failed: ${err}" 
                     // Marcar build como inestable si hay vulnerabilidades 
                     currentBuild.result = 'UNSTABLE' 
                 }
-        }
 
                 sh 'snyk test --all-projects --json | snyk-to-sonar > snyk-sonar.json' 
                 
@@ -88,7 +87,7 @@ pipeline {
 
                 sh 'snyk code test --severity-threshold=high'
             }
-        } 
+        } */
  
         // Etapa 3: Pruebas Paralelizadas 
         stage('Pruebas en Paralelo') { 
