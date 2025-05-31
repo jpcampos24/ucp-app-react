@@ -78,6 +78,7 @@ pipeline {
                     // Marcar build como inestable si hay vulnerabilidades 
                     currentBuild.result = 'UNSTABLE' 
                 }
+        }
 
                 sh 'snyk test --all-projects --json | snyk-to-sonar > snyk-sonar.json' 
                 
