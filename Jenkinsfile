@@ -78,7 +78,7 @@ pipeline {
             ] 
              
             // Notificación por email ante fallos 
-            emailext ( 
+            email ( 
                 subject: "Pipeline ${currentBuild.result}: ${env.JOB_NAME}", 
                 body: """ 
                     <h2>Resultado: ${currentBuild.result}</h2> 
