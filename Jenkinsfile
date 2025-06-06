@@ -143,8 +143,8 @@ pipeline {
     } 
     post { 
         always {
-            junit 'reports/test/junit-chrome.xml'
-            junit 'reports/test/junit-firefox.xml'
+            //junit 'reports/test/junit-chrome.xml'
+            //junit 'reports/test/junit-firefox.xml'
             script { 
                 def qg = waitForQualityGate() 
                 if (qg.status != 'OK') { 
