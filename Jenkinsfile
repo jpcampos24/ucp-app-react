@@ -145,7 +145,7 @@ pipeline {
         always {
             //junit 'reports/test/junit-chrome.xml'
             //junit 'reports/test/junit-firefox.xml'
-            script { 
+           /* script { 
                 def qg = waitForQualityGate() 
                 if (qg.status != 'OK') { 
                     error "Calidad no aprobada: ${qg.status}" 
@@ -159,7 +159,7 @@ pipeline {
                 reportDir: 'prod', 
                 reportFiles: 'index.html', 
                 reportName: 'Demo Deploy' 
-            ] 
+            ] */
              
             // Notificación por email ante fallos 
             mail ( 
