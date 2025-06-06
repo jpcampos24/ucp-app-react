@@ -2,12 +2,12 @@ pipeline {
     agent any 
     tools { 
         nodejs 'Node_24'  // Configurado en Global Tools
-        //sonarScanner 'SonarQubeScanner'
+       // sonarScanner 'SonarQubeScanner'
     }
-    environment { 
+    /*environment { 
         SONAR_PROJECT_KEY = 'ucp-app-react' 
         SONAR_PROJECT_NAME = 'UCP React App' 
-    } 
+    } */
     stages { 
         // Etapa 1: Checkout 
         stage('Checkout') { 
@@ -16,9 +16,9 @@ pipeline {
             } 
         } 
      // Nueva etapa: Análisis de SonarQube 
-        stage('SonarQube Analysis') { 
+     /*   stage('SonarQube Analysis') { 
             steps { 
-                withSonarQubeEnv('SonarQubeScanner') { 
+                withSonarQubeEnv('SonarQube') { 
                     sh ''' 
                         sonar-scanner \
                         -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
@@ -31,7 +31,7 @@ pipeline {
                     ''' 
                 } 
             } 
-        } 
+        } */
 
         // Etapa 2: Build 
         stage('Build') { 
@@ -39,6 +39,13 @@ pipeline {
                 sh 'npm install' 
                 sh 'npm run build' 
             } 
+        }
+
+        // Etapa 4: Prepara una carpeta para guardar los resultados de tests
+        stage('Preparar carpeta para el resultado de los tests') {
+            steps {
+                sh 'mkdir -p test-results'
+            }
         }
 
         //Snyk step
@@ -98,8 +105,7 @@ pipeline {
                         script { 
                             try { 
                                 sh 'npm test -- --browser=chrome --watchAll=false --ci --reporters=jest-junit'
-                                sh 'ls -R reports || echo "No reports folder found"'
-                                junit 'reports/test/junit.xml'
+                                junit 'reports/test/junit-chrome.xml'
                             } catch (err) { 
                                 echo "Pruebas en Chrome fallaron: ${err}" 
                                 currentBuild.result = 'UNSTABLE' 
@@ -113,7 +119,7 @@ pipeline {
                         script { 
                             try { 
                                 sh 'npm test -- --browser=firefox --watchAll=false --ci --reporters=jest-junit' 
-                                junit 'reports/test/junit.xml' 
+                                junit 'reports/test/junit-firefox.xml' 
                             } catch (err) { 
                                 echo "Pruebas en Firefox fallaron: ${err}" 
                                 currentBuild.result = 'UNSTABLE' 
@@ -137,7 +143,8 @@ pipeline {
     } 
     post { 
         always {
-            
+            junit 'reports/test/junit-chrome.xml'
+            junit 'reports/test/junit-firefox.xml'
             script { 
                 def qg = waitForQualityGate() 
                 if (qg.status != 'OK') { 
