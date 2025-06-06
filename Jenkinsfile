@@ -2,7 +2,7 @@ pipeline {
     agent any 
     tools { 
         nodejs 'Node_24'  // Configurado en Global Tools
-       // sonarScanner 'SonarQubeScanner'
+       // sonarScanner 'SonarQubeScanner'.
     }
     /*environment { 
         SONAR_PROJECT_KEY = 'ucp-app-react' 
